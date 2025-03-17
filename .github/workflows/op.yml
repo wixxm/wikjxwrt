@@ -111,7 +111,7 @@ jobs:
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
-        cd openwrt/bin/targets/*/*
+        cd openwrt/bin/targets/x86/64
         rm -rf packages
         find . ! -name '*.img.gz' ! -name '*.img' -type f -delete
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
