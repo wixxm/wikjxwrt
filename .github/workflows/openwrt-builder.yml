@@ -36,22 +36,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Backup OpenWrt directory
-      run: |
-       mv /home/runner/work/wikjxwrt/wikjxwrt /home/runner/work/wikjxwrt/wikjxwrt_backup
-
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
       with:
         root-reserve-mb: 10240
+        temp-reserve-mb: 100
         swap-size-mb: 8192
+        overprovision-lvm: false
+        build-mount-path: '/mnt/build'
         remove-dotnet: 'true'
         remove-android: 'true'
         remove-haskell: 'true'
-        
-    - name: Restore OpenWrt directory
-      run: |
-       mv /home/runner/work/wikjxwrt/wikjxwrt_backup /home/runner/work/wikjxwrt/wikjxwrt
 
     - name: Initialization environment
       env:
