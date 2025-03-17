@@ -36,6 +36,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 10240
+        swap-size-mb: 8192
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -50,14 +59,6 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
         
-    - name: Maximize build space
-      uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 10240
-        swap-size-mb: 8192
-        remove-dotnet: 'true'
-        remove-android: 'true'
-        remove-haskell: 'true'
 
     - name: Clone source code
       working-directory: /workdir
