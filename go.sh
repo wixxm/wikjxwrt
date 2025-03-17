@@ -155,5 +155,17 @@ for entry in "$WIKJXWRT_ENTRY" "$PASSWALL_PACKAGES_ENTRY" "$PASSWALL_ENTRY"; do
 done
 echo -e "$ICON_SUCCESS 注释自定义 feeds 完成。"
 
+# 删除旧的 .config 配置
+rm -f .config .config.old
+
+# 配置 .config
+section "配置 .config 文件"
+info "下载并配置 .config..."
+git clone "$WIKJXWRTR_CONFIG_REPO" temp_config_repo || error "克隆配置仓库失败！"
+mv temp_config_repo/6.6/.config ./ || error "移动 .config 文件失败！"
+rm -rf temp_config_repo
+make defconfig || error "同步配置文件失败！"
+echo -e "$ICON_SUCCESS .config 配置完成。"
+
 
 
