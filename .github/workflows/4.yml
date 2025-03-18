@@ -30,9 +30,6 @@ env:
 
 jobs:
  build:
-  permissions:
-    actions: write
-    workflow: write
   runs-on: ubuntu-20.04
 
     steps:
