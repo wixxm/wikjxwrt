@@ -53,7 +53,9 @@ jobs:
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
         sudo docker image prune --all --force
         sudo -E apt-get -qq update
-        curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt-auto/main/hj.sh -o hj.sh && bash hj.sh
+        curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt-auto/main/hj.sh -o hj.sh
+        sudo chmod +x hj.sh
+        sudo bash hj.sh
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
