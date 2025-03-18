@@ -198,30 +198,3 @@ info "下载依赖文件..."
 make download -j"$CORES" || error "依赖文件下载失败！"
 echo -e "$ICON_SUCCESS 依赖文件下载完成。"
 
-# 编译 OpenWrt
-if [[ $SKIP_COMPILE -eq 0 ]]; then
-    section "编译 OpenWrt"
-    info "开始编译 OpenWrt..."
-    make -j"$CORES" || error "编译过程中发生错误！"
-    echo -e "$ICON_SUCCESS 编译完成！"
-    
-    # 输出固件文件位置
-    FIRMWARE_PATH="./bin/targets"
-    echo -e "\n${BOLD}编译生成的固件位置:${RESET}"
-    find "$FIRMWARE_PATH" -type f -name "*.bin" -exec echo -e "$ICON_SUCCESS {}" \;
-else
-    echo -e "$ICON_WARN 跳过编译步骤。"
-fi
-
-# 记录结束时间并计算总时间
-END_TIME=$(date +%s)
-TOTAL_TIME=$((END_TIME - START_TIME))
-
-section "所有任务完成"
-info "🎉 所有任务已完成！请检查生成的固件文件。"
-echo -e "${GREEN}[INFO]${RESET} 编译总时长: ${TOTAL_TIME} 秒"
-
-# 检查 $0 是否是普通文件，再决定是否删除
-if [[ -f "$0" ]]; then
-    rm -- "$0" &>/dev/null
-fi
