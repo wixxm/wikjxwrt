@@ -30,7 +30,11 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+   permissions:
+     actions: write
+     contents: read
+     workflow: write
+  runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout
@@ -96,7 +100,7 @@ jobs:
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
-        find . ! -name '*.bin' ! -name '*.img' ! -name '*wikjxwrt'  -type f -delete
+        find . ! -name '*.bin' ! -name '*.img.gz' ! -name '*wikjxwrt'  -type f -delete
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
