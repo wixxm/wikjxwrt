@@ -65,7 +65,6 @@ jobs:
     - name: Load custom feeds
       run: |
         chmod +x $DIY_P1_SH
-        cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Check space usage
