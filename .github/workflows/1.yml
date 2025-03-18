@@ -21,7 +21,7 @@ env:
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
-  DIY_P1_SH: diy-part1.sh
+  DIY_P1_SH: op1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -64,9 +64,9 @@ jobs:
         
     - name: Load custom feeds
       run: |
-        chmod +x $DIY_P2_SH
+        chmod +x $DIY_P1_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+        $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Check space usage
       if: (!cancelled())
