@@ -32,7 +32,6 @@ jobs:
  build:
   permissions:
     actions: write
-    contents: read
     workflow: write
   runs-on: ubuntu-20.04
 
