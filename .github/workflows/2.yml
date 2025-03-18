@@ -30,7 +30,11 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+   permissions:
+     actions: write
+     contents: read
+     workflow: write
+  runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
