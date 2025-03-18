@@ -62,9 +62,10 @@ jobs:
         
     - name: Load custom feeds
       run: |
-        chmod +x $DIY_P1_SH
-        $GITHUB_WORKSPACE/$DIY_P1_SH
-
+        curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt/main/op1.sh -o op1.sh
+        chmod +x op1.sh
+        ./op1.sh
+        
     - name: Compile the firmware
       id: compile
       run: |
