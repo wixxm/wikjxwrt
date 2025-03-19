@@ -13,8 +13,8 @@
 name: Update Checker
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/wixxm/wikjxwrt-packages
+  REPO_BRANCH: main
 
 on:
   workflow_dispatch:
