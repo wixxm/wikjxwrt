@@ -26,12 +26,12 @@
 
 
 #### 集成插件
- |  服务 | Docker  |  网络  |
+ |  服务 | 系统  |  网络  |
   |  :----  |  :----  |  :----  |
-  | passwall | Dockerman | SpeedTest |
-  | 应用过滤 | Docker | UPnP |
-  | 微信推送 | Dockerd | Bandwidth Monitor |
-  | MosDNS | Docker-compose | EQoS |
+  | passwall | netdata | SpeedTest |
+  | 应用过滤 | CPU Load | UPnP |
+  | 微信推送 | Argon config | Bandwidth Monitor |
+  | MosDNS | DiskMan | EQoS |
   | openwrtclash | | Socat |
   | lucky | | L2TP |
   | nikki | | WireGuard |
