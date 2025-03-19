@@ -1,162 +1,104 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <title>OpenWrt Firmware</title>
-  <style>
-    /* 全局样式 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: #FCE4EC; /* 淡粉色背景 */
-      color: #333;
-      line-height: 1.6;
-    }
-    a {
-      color: #E91E63;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* 容器 */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      background: #FFFFFF;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-      border-radius: 6px;
-      padding: 40px 30px;
-      margin-top: 50px;
-      margin-bottom: 50px;
-    }
-
-    /* 头部 */
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #E91E63; /* 主题粉色 */
-      margin-bottom: 10px;
-    }
-    .subtitle {
-      font-size: 1.2rem;
-      color: #AD1457; /* 深一点的粉色调 */
-    }
-
-    /* 各个区块 */
-    .section {
-      margin-bottom: 40px;
-    }
-    .section h2 {
-      font-size: 1.5rem;
-      color: #E91E63;
-      margin-bottom: 15px;
-      position: relative;
-      padding-bottom: 5px;
-    }
-    .section h2::after {
-      content: "";
-      display: block;
-      width: 50px;
-      height: 3px;
-      background: #E91E63;
-      margin-top: 5px;
-      border-radius: 2px;
-    }
-    .section p,
-    .section li {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    /* 列表 */
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-
-    /* 下载链接列表 */
-    .download-list li {
-      margin-bottom: 8px;
-    }
-
-    /* 页脚 */
-    .footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #999;
-      margin-top: 20px;
-    }
-    .footer a {
-      color: #E91E63;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenWrt Lite</title>
+    <meta name="description" content="OpenWrt Lite 是一个优化的固件版本，专为中国大陆用户设计，搭载内核 6.11.11，并基于原生 OpenWrt 提供高效稳定的体验。">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(135deg, #FFB6C1, #FFC0CB);
+            color: white;
+            text-align: center;
+            padding: 2.5em 0;
+        }
+        ul li {
+            margin-bottom: 8px;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 50px;
+        }
+        .button-container {
+            display: inline-block;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        .download-button {
+            background-color: #6495ed;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.3s;
+            display: inline-block;
+            text-align: center;
+        }
+        .download-button:hover {
+            background-color: #0066CC;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 0.1em 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>OpenWrt 固件</h1>
+        <p>增强版 Lite 固件，内核 6.11.11</p>
+    </header>
 
-  <div class="container">
-    <!-- 头部 -->
-    <div class="header">
-      <h1 class="title">OpenWrt Firmware</h1>
-      <p class="subtitle">Enhanced Lite firmware with Kernel 6.1.11</p>
+    <div class="container">
+        <section>
+            <h2>OpenWrt Lite 23.05</h2>
+            <p>为中国大陆用户优化的 OpenWrt 变种。</p>
+            <p>基于原生 OpenWrt，提供高效稳定的使用体验。</p>
+        </section>
+
+        <section>
+            <h2>支持设备</h2>
+            <ul>
+                <li>X86_64</li>
+                <li>NanoPi R4S</li>
+                <li>NanoPi R5S</li>
+                <li>NanoPi R5C</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>下载</h2>
+            <p>OpenWrt Lite 预装 Mihomo、Sing-box、DDNS、Tailscale、SMB、UPnP、EQoS、Socat。</p>
+            <div class="button-container">
+                <a class="download-button" href="https://github.com/pmkol/openwrt-lite/releases/tag/v23.05.5-lite" target="_blank">v23.05.5 (Lite)</a>
+            </div>
+            <p>OpenWrt Server 版本支持 Docker 和 Iptables，并包含更多 LuCI 预装应用，适用于高级用户。</p>
+            <div class="button-container">
+                <a class="download-button" href="https://github.com/pmkol/openwrt-lite/releases/tag/v23.05.5-server" target="_blank">v23.05.5 (Server)</a>
+            </div>
+        </section>
     </div>
 
-    <!-- 简介 -->
-    <div class="section">
-      <h2>简介</h2>
-      <p>这是一个专为中国大陆用户优化的 OpenWrt 固件，基于原生 OpenWrt，提供更高效、更稳定的使用体验。</p>
-    </div>
-
-    <!-- 目标设备 -->
-    <div class="section">
-      <h2>目标设备</h2>
-      <ul>
-        <li>X86_64</li>
-        <li>NanoPi R5S</li>
-        <li>NanoPi R5C</li>
-        <!-- 需要可自行添加更多设备 -->
-      </ul>
-    </div>
-
-    <!-- 下载 -->
-    <div class="section">
-      <h2>下载</h2>
-      <ul class="download-list">
-        <li>
-          <strong>v23.05.15 (Lite)</strong> 
-          - 预装了 MinMon, Snmpd, DDNS, Tailscale, SMB, UPNP, EoDs, Socat 等基础组件 
-          [<a href="#">下载链接</a>]
-        </li>
-        <li>
-          <strong>v23.05.15 (Server)</strong> 
-          - 支持 Docker、iptables 等，预装更多 LuCI 应用 
-          [<a href="#">下载链接</a>]
-        </li>
-        <!-- 如果有更多版本，可以继续添加 -->
-      </ul>
-    </div>
-
-    <!-- 更新日志 -->
-    <div class="section">
-      <h2>更新日志</h2>
-      <p>你可以在 <a href="#">GitHub Release Notes</a> 中查看所有更新内容。</p>
-    </div>
-
-    <!-- 页脚 -->
     <div class="footer">
-      <p>&copy; 2023 OpenWrt Firmware. All rights reserved. | <a href="#">GitHub 项目地址</a></p>
+        <p>&copy; 2023 OpenWrt Firmware. All rights reserved. | <a href="#">GitHub 项目地址</a></p>
     </div>
-  </div>
-
 </body>
 </html>
