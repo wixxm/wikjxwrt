@@ -26,12 +26,12 @@
 #### 附加功能
    优化SSH信息显示
  |  系统负载:   0.00 0.06 0.03 | 运行时间:   0 days  |  
-  |  :----  |  :----  |  :----  |
-  | passwall | netdata | iperf3 |
-  | 应用过滤 | CPU Load | UPnP |
-  | 微信推送 | Argon config | urbo ACC 网络加速设置 |
-  | MosDNS | DiskMan | BBR |
-  | openwrtclash | statistics | nlbwmon |
+  |  :----  |  :----  |  
+  | passwall | netdata | 
+  | 应用过滤 | CPU Load | 
+  | 微信推送 | Argon config | 
+  | MosDNS | DiskMan | 
+  | openwrtclash | statistics | 
 
    | 系统负载:   0.00 0.06 0.03 | 运行时间:   0 days   | 
   | 内存已用:   7% of 3936MB  |  交换内存:   0% of 0MB   | 
