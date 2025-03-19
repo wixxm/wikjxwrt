@@ -40,3 +40,7 @@
   | 网络共享 | | |
   | 终端 | | | 
   | MWAN3 分流助手 | | | 
+
+### 本地编译
+   如需本地编译固件可直接使用本固件一键编译脚本即可编译出完全相同固件
+   - [WikjxWrt-Auto](https://github.com/wixxm/wikjxwrt-auto)
