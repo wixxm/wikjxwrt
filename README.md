@@ -20,3 +20,20 @@
 地址：192.168.88.1（修改代码：vi /etc/config/network）
 用户：root
 密码：空
+
+#### 集成插件
+ |  服务 | Docker  |  网络  |
+  |  :----  |  :----  |  :----  |
+  | passwall | Dockerman | SpeedTest |
+  | 应用过滤 | Docker | UPnP |
+  | 微信推送 | Dockerd | Bandwidth Monitor |
+  | MosDNS | Docker-compose | EQoS |
+  | openwrtclash | | Socat |
+  | lucky | | L2TP |
+  | nikki | | WireGuard |
+  | ddns-go | | |
+  | 宽带监控 | | |
+  | 网络共享 | | |
+  | 终端 | | |
+  | upnp | | | 
+
