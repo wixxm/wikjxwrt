@@ -71,7 +71,7 @@ cat <<EOF >> index.html
         </tbody>
     </table>
     <footer>
-        <p>&copy; <a href="https://github.com/pmkol/openwrt-lite" target="_blank">OpenWrt-Lite</a> | Licensed under <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" target="_blank">GPL-2.0</a></p>
+        <p>&copy; <a href="https://github.com/wixxm/wikjxwrt" target="_blank">OpenWrt-Lite</a> | Licensed under <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html" target="_blank">GPL-2.0</a></p>
     </footer>
 </body>
 </html>
