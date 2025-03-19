@@ -25,14 +25,8 @@
 
 #### 附加功能
    优化SSH信息显示
- |  系统负载:   0.00 0.06 0.03 | 运行时间:   0 days  |  
-  |  内存已用:   7% of 3936MB  |  内存已用:   7% of 3936MB  |  
-  | passwall | netdata | 
-  | 应用过滤 | CPU Load | 
-  | 微信推送 | Argon config | 
-  | MosDNS | DiskMan | 
-  | openwrtclash | statistics | 
 
+   |  :----  |  :----  |
    | 系统负载:   0.00 0.06 0.03 | 运行时间:   0 days   | 
   | 内存已用:   7% of 3936MB  |  交换内存:   0% of 0MB   | 
   | CoreMark:   58293.635974 | 存储使用:   39% of 990.7M |
