@@ -6,5 +6,10 @@
    官方源码仓库 - [OpenWrt-24.10](https://github.com/openwrt/openwrt/tree/openwrt-24.10)
    
    本固件源码仓库 - [OpenWrt-24.10](https://github.com/wixxm/OpenWrt-24.10)
+
+## 固件下载地址
+   - [Github](https://github.com/wixxm/wikjxwrt/releases)
+
+   - [Google][(https://drive.google.com/drive/folders/1ORaVqeKyvWItATbq0NCFNysLSOhb6Q2N?usp=sharing)
    
    
