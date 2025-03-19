@@ -32,12 +32,11 @@
   | 应用过滤 | CPU Load | UPnP |
   | 微信推送 | Argon config | Bandwidth Monitor |
   | MosDNS | DiskMan | EQoS |
-  | openwrtclash | | Socat |
+  | openwrtclash | statistics | Socat |
   | lucky | | L2TP |
   | nikki | | WireGuard |
   | ddns-go | | |
   | 宽带监控 | | |
   | 网络共享 | | |
-  | 终端 | | |
-  | upnp | | | 
+  | 终端 | | | 
   | MWAN3 分流助手 | | | 
