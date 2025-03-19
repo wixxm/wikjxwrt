@@ -97,7 +97,9 @@ jobs:
         rm -rf wikjxwrt/24.10/*
         cp -rf openwrt/bin/packages/* wikjxwrt/24.10/
         git add wikjxwrt/24.10/
-
+        git commit -m "🏅 Sync Wikjxwrt-feeds - $(date '+%Y-%m-%d')" || echo "No changes to commit."
+        git push origin feeds || echo "Push failed, likely no new changes."
+        
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
