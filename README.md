@@ -11,3 +11,6 @@
    - [Github](https://github.com/wixxm/wikjxwrt/releases)
   
    - [Google](https://drive.google.com/drive/folders/1ORaVqeKyvWItATbq0NCFNysLSOhb6Q2N?usp=sharing)
+## 固件说明
+   ### 支持硬件 
+     - [x] X86_64
