@@ -42,7 +42,7 @@
   |  :----  |  :----  |  :----  |
   | passwall | netdata | iperf3 |
   | 应用过滤 | CPU Load | UPnP |
-  | 微信推送 | Argon config | urbo ACC 网络加速设置 |
+  | 微信推送 | Argon config | Turbo ACC 网络加速设置 |
   | MosDNS | DiskMan | BBR |
   | openwrtclash | statistics | nlbwmon |
   | lucky | | MultiWAN 管理器 |
