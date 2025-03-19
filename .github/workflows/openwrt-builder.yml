@@ -64,9 +64,9 @@ jobs:
 
     - name: Load custom feeds
       run: |
-        curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt/main/op1.sh -o op1.sh
-        chmod +x op1.sh
-        ./op1.sh
+        curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt/main/wikjxwrt.sh -o wikjxwrt.sh
+        chmod +x wikjxwrt.sh
+        ./wikjxwrt.sh
 
     - name: Compile the firmware
       id: compile
