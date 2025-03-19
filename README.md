@@ -34,7 +34,7 @@
   | MosDNS | DiskMan | BBR |
   | openwrtclash | statistics | nlbwmon |
   | lucky | | MultiWAN 管理器 |
-  | nikki | | WireGuard |
+  | nikki | | |
   | ddns-go | | |
   | 宽带监控 | | |
   | 网络共享 | | |
