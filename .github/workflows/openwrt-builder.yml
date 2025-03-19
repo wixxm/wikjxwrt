@@ -83,22 +83,12 @@ jobs:
       if: (!cancelled())
       run: df -hT
 
-    - name: Upload packages to feeds branch
-      if: steps.compile.outputs.status == 'success'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-      run: |
-        git config --global user.name "wixxm"
-        git config --global user.email "419691642@qq.com"
-        git clone --depth=1 --branch=feeds https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }} feeds_repo
-        cd feeds_repo
-        git pull --rebase origin feeds || echo "No updates to rebase."
-        mkdir -p wikjxwrt/24.10
-        rm -rf wikjxwrt/24.10/*
-        cp -rf openwrt/bin/packages/* wikjxwrt/24.10/
-        git add wikjxwrt/24.10/
-        git commit -m "🏅 Sync Wikjxwrt-feeds - $(date '+%Y-%m-%d')" || echo "No changes to commit."
-        git push origin feeds || echo "Push failed, likely no new changes."
+    - name: Upload bin directory
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/bin
 
     - name: Organize files
       id: organize
