@@ -10,6 +10,6 @@
 ## 固件下载地址
    - [Github](https://github.com/wixxm/wikjxwrt/releases)
 
-   - [Google][(https://drive.google.com/drive/folders/1ORaVqeKyvWItATbq0NCFNysLSOhb6Q2N?usp=sharing)
+   - [][(https://drive.google.com/drive/folders/1ORaVqeKyvWItATbq0NCFNysLSOhb6Q2N?usp=sharing)
    
-   
+   - [Google](https://github.com/wixxm/wikjxwrt/releases)
