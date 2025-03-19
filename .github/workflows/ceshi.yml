@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: OpenWrt Builder CS
+name: OpenWrt Builder
 
 on:
   repository_dispatch:
@@ -64,9 +64,9 @@ jobs:
 
     - name: Load custom feeds
       run: |
-        curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt/main/op1.sh -o op1.sh
-        chmod +x op1.sh
-        ./op1.sh
+        curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt/main/wikjxwrt.sh -o wikjxwrt.sh
+        chmod +x wikjxwrt.sh
+        ./wikjxwrt.sh
 
     - name: Compile the firmware
       id: compile
@@ -84,11 +84,20 @@ jobs:
       run: df -hT
 
     - name: Upload bin directory
-      uses: actions/upload-artifact@main
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-        path: openwrt/bin
+      run: |
+       git config --global user.name 'GitHub Actions'
+       git config --global user.email 'actions@github.com'
+       git fetch origin feeds
+       git checkout feeds || git checkout -b feeds
+       git pull origin feeds --rebase
+       mkdir -p wikjxwrt/24.10/x86_64/
+       cp -r openwrt/bin/packages/x86_64/* wikjxwrt/24.10/x86_64/
+       git add wikjxwrt/24.10/x86_64/
+       if [[ -n "$(git status --porcelain)" ]]; then
+         git commit -m "🏅 Sync feeds - 24.10 $(date '+%Y-%m-%d')"
+         git push origin feeds || echo "❌ Push failed, likely no new changes."
+       else
+       
 
     - name: Organize files
       id: organize
@@ -111,9 +120,18 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
-        touch release.txt
-        [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
+        # 生成带有随机前缀的标签（🌈wikjxwrt-YYYYMMDD）
+        DATE_TAG=$(date +"%Y%m%d")
+        PREFIXES=("🌈" "✨" "🚀" "🔥" "🌟" "⚡" "🎉" "🌻" "💡")  # 可选前缀符号
+        RAND_PREFIX="${PREFIXES[$RANDOM % ${#PREFIXES[@]}]}"
+        TAG_NAME="${RAND_PREFIX}wikjxwrt-${DATE_TAG}"  
+        # 输出 release_tag 变量
+        echo "release_tag=${TAG_NAME}" >> $GITHUB_OUTPUT
+        # 生成 Release 说明
+        echo "🚀 OpenWrt 24.10 编译完成！" > release.txt
+        echo "📅 编译日期: $(date +"%Y-%m-%d")" >> release.txt
+        echo "📦 源码版本: openwrt-24.10" >> release.txt
+        echo "🔗 固件仅包含 squashfs & ext4 格式" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
@@ -129,8 +147,8 @@ jobs:
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 1
-        keep_minimum_runs: 3
+        retain_days: 5
+        keep_minimum_runs: 10
       env:
        GITHUB_TOKEN: ${{ secrets.GH_PAT }}  
 
