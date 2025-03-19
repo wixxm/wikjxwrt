@@ -28,12 +28,12 @@
 #### 集成插件
  |  服务 | 系统  |  网络  |
   |  :----  |  :----  |  :----  |
-  | passwall | netdata | SpeedTest |
+  | passwall | netdata | iperf3 |
   | 应用过滤 | CPU Load | UPnP |
-  | 微信推送 | Argon config | Bandwidth Monitor |
-  | MosDNS | DiskMan | EQoS |
-  | openwrtclash | statistics | Socat |
-  | lucky | | L2TP |
+  | 微信推送 | Argon config | urbo ACC 网络加速设置 |
+  | MosDNS | DiskMan | BBR |
+  | openwrtclash | statistics | nlbwmon |
+  | lucky | | MultiWAN 管理器 |
   | nikki | | WireGuard |
   | ddns-go | | |
   | 宽带监控 | | |
