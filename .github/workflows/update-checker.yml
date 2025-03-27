@@ -1,19 +1,7 @@
-#
-# https://github.com/P3TERX/Actions-OpenWrt
-#
-# File: .github/workflows/update-checker.yml
-# Description: Source code update checker
-#
-# Copyright (c) 2019-2024 P3TERX <https://p3terx.com>
-#
-# This is free software, licensed under the MIT License.
-# See /LICENSE for more information.
-#
-
 name: Update Checker
 
 env:
-  REPO_URL: https://github.com/wixxm/wikjxwrt-packages
+  REPO_URL: https://github.com/wixxm/wikjxwrt-feeds
   REPO_BRANCH: main
 
 on:
