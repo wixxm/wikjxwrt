@@ -1,77 +1,71 @@
-name: Generate OTA JSON
+name: Update OTA JSON
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # 手动触发
   schedule:
-    - cron: "0 4 * * *"  # 每天自动执行一次，可根据需要修改
+    - cron: '0 3 * * *'  # 每天凌晨 3 点自动执行一次（可改）
 
 jobs:
   generate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v4
 
-      - name: Get latest release info
-        id: release
+    steps:
+      - name: Checkout api branch
+        uses: actions/checkout@v4
+        with:
+          ref: api
+
+      - name: Fetch latest release info
+        id: get_release
         uses: actions/github-script@v7
         with:
           script: |
             const release = await github.rest.repos.getLatestRelease({
               owner: context.repo.owner,
-              repo: context.repo.repo,
+              repo: context.repo.repo
             });
 
-            const asset = release.data.assets.find(a =>
-              a.name.endsWith('wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz')
+            const assets = release.data.assets;
+            const target = assets.find(asset =>
+              asset.name === 'wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz'
             );
 
-            if (!asset) throw new Error('Firmware not found in release assets.');
+            if (!target) {
+              throw new Error("Target firmware not found in the latest release.");
+            }
 
-            const buildDate = Math.floor(new Date(release.data.created_at).getTime() / 1000).toString();
-
-            const fs = require('fs');
-            fs.mkdirSync('api', { recursive: true });
-
-            const jsonData = {
+            const json = {
               "x86_64": [
                 {
-                  "build_date": buildDate,
-                  "sha256sum": "",  // SHA256 稍后填
-                  "url": asset.browser_download_url
+                  "build_date": Math.floor(new Date(release.data.published_at).getTime() / 1000).toString(),
+                  "sha256sum": "",  // placeholder
+                  "url": target.browser_download_url
                 }
               ]
             };
 
-            fs.writeFileSync('api/fw.json', JSON.stringify(jsonData, null, 2));
+            const fs = require('fs');
+            fs.writeFileSync('fw.json', JSON.stringify(json, null, 4));
+            core.setOutput("fw_url", target.browser_download_url);
+            core.setOutput("fw_name", target.name);
 
-            core.setOutput('url', asset.browser_download_url);
-            core.setOutput('filename', asset.name);
-
-      - name: Download firmware file
+      - name: Download firmware to calculate sha256
         run: |
-          wget "${{ steps.release.outputs.url }}" -O firmware.img.gz
-
-      - name: Calculate sha256
-        id: hash
-        run: |
-          sha256=$(sha256sum firmware.img.gz | cut -d' ' -f1)
-          echo "sha256=$sha256" >> $GITHUB_OUTPUT
+          curl -L "${{ steps.get_release.outputs.fw_url }}" -o "${{ steps.get_release.outputs.fw_name }}"
+          sha256sum "${{ steps.get_release.outputs.fw_name }}" | cut -d ' ' -f1 > checksum.txt
 
       - name: Update sha256 in JSON
         run: |
-          jq '.x86_64[0].sha256sum = "${{ steps.hash.outputs.sha256 }}"' api/fw.json > api/fw.fixed.json
-          mv api/fw.fixed.json api/fw.json
+          sha=$(cat checksum.txt)
+          jq --arg sha "$sha" '.x86_64[0].sha256sum = $sha' fw.json > fw_tmp.json
+          mv fw_tmp.json fw.json
 
-      - name: Push fw.json to api branch
+      - name: Commit and push fw.json to api branch
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git fetch origin
-          git switch --force-create api
-          cp -f api/fw.json ./fw.json
+          rm -rf ./* .[^.]* || true  # 清空 api 分支中的旧内容
+          mv fw.json fw.json
           git add fw.json
-          git commit -m "Update fw.json @ $(date -u '+%Y-%m-%d %H:%M:%S')" || echo "No changes"
-          git push origin api --force
+          git commit -m "Update fw.json @ $(date -u '+%Y-%m-%d %H:%M:%S')"
+          git push origin HEAD:api --force
