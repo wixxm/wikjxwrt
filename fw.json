@@ -1,9 +1,44 @@
 {
+    "netgear,r8500": [
+        {
+            "build_date": "1743619285",
+            "sha256sum": "82f39da149c33d42b2f02ffc3abeae31bc0745bf5c5d034ec569a2d30f7cfdbb",
+            "url": "https://r8500.cooluc.com/d/releases/openwrt-24.10/v24.10.0/openwrt-24.10.0-bcm53xx-generic-netgear_r8500-squashfs.chk"
+        }
+    ],
+    "friendlyarm,nanopi-r4s": [
+        {
+            "build_date": "1743619421",
+            "sha256sum": "5f221a5a4e5bf86c8a0e01e4ae7aa4dd6ca14b82095f1491cc33c83c0ec9941e",
+            "url": "https://github.com/sbwml/builder/releases/download/v24.10.0/openwrt-24.10.0-rockchip-armv8-friendlyarm_nanopi-r4s-squashfs-sysupgrade.img.gz"
+        }
+    ],
+    "friendlyarm,nanopi-r5c": [
+        {
+            "build_date": "1743619289",
+            "sha256sum": "59a161ff203044fbfb9d828f5098080f9e9c97a68465a5c3ca4e58eedeb4be56",
+            "url": "https://github.com/sbwml/builder/releases/download/v24.10.0/openwrt-24.10.0-rockchip-armv8-friendlyarm_nanopi-r5c-squashfs-sysupgrade.img.gz"
+        }
+    ],
+    "friendlyarm,nanopi-r5s": [
+        {
+            "build_date": "1743619289",
+            "sha256sum": "9a234e69bc4f58bbd2eed30d97cb67499654e68ce35f2b792f3276c458d90a0e",
+            "url": "https://github.com/sbwml/builder/releases/download/v24.10.0/openwrt-24.10.0-rockchip-armv8-friendlyarm_nanopi-r5s-squashfs-sysupgrade.img.gz"
+        }
+    ],
     "x86_64": [
         {
-            "build_date": "1743071352",
-            "sha256sum": "4862bb270dbf74cbafe0447d69f8d54a619767d80ae567ed433806017c02e621",
-            "url": "https://github.com/wixxm/wikjxwrt/releases/download/%E2%9C%A8wikjxwrt-20250405/openwrt-24.10.0-x86-64-generic-squashfs-combined-efi.img.gz"
+            "build_date": "1743071353",
+            "sha256sum": "4862bb270dbf74cbafe0447d69f8d54a619767d80ae567ed433806017c02e622",
+            "url": "https://github.com/wixxm/wikjxwrt/releases/download/%E2%9C%A8wikjxwrt-20250405/wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz"
+        }
+    ],
+    "armsr,armv8": [
+        {
+            "build_date": "1743619225",
+            "sha256sum": "2b98aa95e2a6d671daa9656e4ab4b7083cb7fc1c93fe2c030fa1b56e95f1926f",
+            "url": "https://github.com/sbwml/builder/releases/download/v24.10.0/openwrt-24.10.0-armsr-armv8-generic-squashfs-combined-efi.img.gz"
         }
     ]
 }
