@@ -29,8 +29,8 @@
     ],
     "x86_64": [
         {
-            "build_date": "1743619211",
-            "sha256sum": "82365a056b864bfd00b2af3f85e5ed30665d17df61ad0ddce5a1c97973a922fd",
+            "build_date": "174331921",
+            "sha256sum": "82365a056b864bfd00b2af3f85e5ed30665d17df61ad0ddce5a1c97973a931fd",
             "url": "https://github.com/sbwml/builder/releases/download/v24.10.0/openwrt-24.10.0-x86-64-generic-squashfs-combined-efi.img.gz"
         }
     ],
