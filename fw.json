@@ -29,9 +29,9 @@
     ],
     "x86_64": [
         {
-            "build_date": "1743071354",
+            "build_date": "1743071352",
             "sha256sum": "4862bb270dbf74cbafe0447d69f8d54a619767d80ae567ed433806017c02e621",
-            "url": "https://github.com/wixxm/wikjxwrt/releases/download/%E2%9C%A8wikjxwrt-20250405/wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz"
+            "url": "https://github.com/sbwml/builder/releases/download/v24.10.0/openwrt-24.10.0-x86-64-generic-squashfs-combined-efi.img.gz"
         }
     ],
     "armsr,armv8": [
