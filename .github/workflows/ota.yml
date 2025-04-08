@@ -2,8 +2,10 @@ name: Generate OTA JSON
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 */6 * * *' # 每6小时运行一次，可按需调整
+  workflow_run:
+    workflows: ["OpenWrt Builder"]
+    types:
+      - completed
 
 jobs:
   build:
