@@ -3,7 +3,9 @@ name: Generate OTA JSON
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["OpenWrt Builder"]
+    workflows:
+      - "OpenWrt Builder"
+      - "Source Code Update"
     types:
       - completed
 
