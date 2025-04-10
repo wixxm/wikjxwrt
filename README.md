@@ -1,6 +1,6 @@
 # Wikjxwrt 云编译固件
 
-固件已加入OTA在线更新功能，目前只支持镜像为wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz安装的版本其他版本暂时不要尝试在线升级功能后续会继续适配。
+固件已加入OTA在线更新（固件编译显示时间为UTC），目前只支持镜像为wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz安装的版本其他版本暂时不要尝试在线升级功能后续会继续适配。
 
 ### 本固件源码基于openwrt-24.10修改，云编译项目。
    本仓库为Wikjxwrt的github云编译库，与一键编译脚本所产出固件一致。
