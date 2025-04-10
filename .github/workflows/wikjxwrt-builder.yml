@@ -1,8 +1,8 @@
-name: WikjxWrt Full Workflow
+name: WikjxWrt Builder
 
 on:
-  workflow_dispatch:
   repository_dispatch:
+  workflow_dispatch:
 
 env:
   REPO_URL: https://github.com/wixxm/OpenWrt-24.10
@@ -72,7 +72,7 @@ jobs:
       run: df -hT
 
     - name: Upload bin directory
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@main
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       with:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
@@ -89,7 +89,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware directory
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
@@ -99,11 +99,14 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
+        # 生成带有随机前缀的标签（🌈wikjxwrt-YYYYMMDD）
         DATE_TAG=$(date +"%Y%m%d")
-        PREFIXES=("🌈" "✨" "🚀" "🔥" "🌟" "⚡" "🎉" "🌻" "💡")
+        PREFIXES=("🌈" "✨" "🚀" "🔥" "🌟" "⚡" "🎉" "🌻" "💡")  # 可选前缀符号
         RAND_PREFIX="${PREFIXES[$RANDOM % ${#PREFIXES[@]}]}"
-        TAG_NAME="${RAND_PREFIX}wikjxwrt-${DATE_TAG}"
+        TAG_NAME="${RAND_PREFIX}wikjxwrt-${DATE_TAG}"  
+        # 输出 release_tag 变量
         echo "release_tag=${TAG_NAME}" >> $GITHUB_OUTPUT
+        # 生成 Release 说明
         echo "🚀 OpenWrt 24.10 编译完成！" > release.txt
         echo "📅 编译日期: $(date +"%Y-%m-%d")" >> release.txt
         echo "📦 源码版本: openwrt-24.10" >> release.txt
@@ -111,7 +114,7 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
@@ -126,7 +129,7 @@ jobs:
         retain_days: 5
         keep_minimum_runs: 10
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+       GITHUB_TOKEN: ${{ secrets.GH_PAT }}  
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master
@@ -137,6 +140,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
+        
   generate-ota-json:
     name: Generate OTA JSON
     needs: build
@@ -160,7 +164,7 @@ jobs:
               repo: context.repo.repo,
             });
 
-            const asset = latest.data.assets.find(a =>
+            const asset = latest.data.assets.find(a => 
               a.name === 'wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz');
 
             if (!asset) {
