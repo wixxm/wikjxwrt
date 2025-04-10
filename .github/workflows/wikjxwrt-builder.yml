@@ -139,6 +139,7 @@ jobs:
 
   generate-ota-json:
     name: Generate OTA JSON
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
