@@ -177,10 +177,19 @@ jobs:
             const buffer = await response.arrayBuffer();
             const sha256 = crypto.createHash('sha256').update(Buffer.from(buffer)).digest('hex');
 
+            const workflowRun = await github.rest.actions.getWorkflowRun({
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             run_id: process.env.GITHUB_RUN_ID,
+            });
+
+            const workflowStartTime = workflowRun.data.run_started_at;
+            const buildDate = Math.floor(new Date(workflowStartTime).getTime() / 1000);
+
             const json = {
               "x86_64": [
                 {
-                  "build_date": String(Math.floor(new Date(latest.data.created_at).getTime() / 1000)),
+                  "build_date": String(buildDate),
                   "sha256sum": sha256,
                   "url": asset.browser_download_url
                 }
