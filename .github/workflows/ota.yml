@@ -42,7 +42,7 @@ jobs:
             const json = {
               "x86_64": [
                 {
-                  "build_date": String(Math.floor(new Date(latest.data.created_at).getTime() / 1000)),
+                  "build_date": String(Math.floor(new Date(latest.data.run_started_at).getTime() / 1000)),
                   "sha256sum": sha256,
                   "url": asset.browser_download_url
                 }
