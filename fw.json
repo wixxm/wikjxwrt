@@ -1,9 +1,9 @@
 {
     "x86_64": [
         {
-            "build_date": "1744568801",
-            "sha256sum": "23f3960eaec51ff4c4dd545065d23a80ddfcfed0da014377563360d65b6c579a",
-            "url": "https://github.com/wixxm/wikjxwrt/releases/download/%F0%9F%8E%89wikjxwrt-20250414-050008/wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz"
+            "build_date": "1744655359",
+            "sha256sum": "cd501a7a85997da69e9f4784abd944d83e1992821f52f9aa7ce4aecafa0ad0b4",
+            "url": "https://github.com/wixxm/wikjxwrt/releases/download/%F0%9F%92%A1wikjxwrt-20250415-045845/wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz"
         }
     ]
 }
