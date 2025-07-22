@@ -43,17 +43,16 @@
  |  服务 | 系统  |  网络  |
   |  :----  |  :----  |  :----  |
   | passwall | netdata | iperf3 |
-  | 应用过滤 | CPU Load | UPnP |
-  | 微信推送 | Argon config | Turbo ACC 网络加速设置 |
-  | MosDNS | DiskMan | BBR |
-  | openwrtclash | statistics | nlbwmon |
-  | lucky | | MultiWAN 管理器 |
-  | nikki | | |
-  | ddns-go | | |
+  |微信推送 | CPU Load | UPnP |
+  | MosDNS | Argon config | Turbo ACC 网络加速设置 |
+  | openwrtclash | DiskMan | BBR |
+  | lucky | statistics | nlbwmon |
+  | nikki | | MultiWAN 管理器 |
   | 宽带监控 | | |
   | 网络共享 | | |
-  | 终端 | | | 
+  | 终端 | | |
   | MWAN3 分流助手 | | | 
+ 
 
 ### 本地编译
    如需本地编译固件可直接使用本固件一键编译脚本即可编译出完全相同固件
