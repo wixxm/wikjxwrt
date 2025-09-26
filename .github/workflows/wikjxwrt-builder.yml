@@ -56,12 +56,6 @@ jobs:
         chmod +x wikjxwrt.sh
         ./wikjxwrt.sh
 
-    - name: Patch Rust build config for CI 
-      run: |
-        cd openwrt
-        sed -i '/\[build\]/a [llvm]' feeds/packages/lang/rust/Makefile
-        sed -i '/\[llvm\]/a download-ci-llvm = false' feeds/packages/lang/rust/Makefile       
-
     - name: Compile the firmware
       id: compile
       run: |
