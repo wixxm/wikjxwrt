@@ -198,3 +198,9 @@ info "下载依赖文件..."
 make download -j"$CORES" || error "依赖文件下载失败！"
 echo -e "$ICON_SUCCESS 依赖文件下载完成。"
 
+# 修改 Rust 构建配置
+section "修补 Rust 构建配置"
+info "调整 Rust Makefile 禁用 CI LLVM 下载..."
+sed -i '/\[build\]/a [llvm]' feeds/packages/lang/rust/Makefile
+sed -i '/\[llvm\]/a download-ci-llvm = false' feeds/packages/lang/rust/Makefile
+echo -e "$ICON_SUCCESS Rust 配置修补完成。" 
