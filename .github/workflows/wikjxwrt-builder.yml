@@ -14,11 +14,8 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai  
-  LLVM_DOWNLOAD_CI: if-unchanged   
-  RUST_BACKTRACE: 1              
+  TZ: Asia/Shanghai        
   
-
 jobs:
   build:
     runs-on: ubuntu-22.04
