@@ -204,10 +204,3 @@ section "下载编译所需文件"
 info "下载依赖文件..."
 make download -j"$CORES" || error "依赖文件下载失败！"
 echo -e "$ICON_SUCCESS 依赖文件下载完成。"
-
-# 修改 Rust 构建配置
-section "修补 Rust 构建配置"
-info "替换 Rust Makefile..."
-rm -f feeds/packages/lang/rust/Makefile
-curl -sSL "https://raw.githubusercontent.com/wixxm/wikjxwrt/main/rust/Makefile" -o feeds/packages/lang/rust/Makefile || error "下载 Rust Makefile 失败！"
-echo -e "$ICON_SUCCESS Rust Makefile 替换完成。"
