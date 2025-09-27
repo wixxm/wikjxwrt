@@ -200,7 +200,7 @@ echo -e "$ICON_SUCCESS 依赖文件下载完成。"
 
 # 修改 Rust 构建配置
 section "修补 Rust 构建配置"
-info "调整 Rust Makefile 禁用 CI LLVM 下载..."
-sed -i '/\[build\]/a [llvm]' feeds/packages/lang/rust/Makefile
-sed -i '/\[llvm\]/a download-ci-llvm = false' feeds/packages/lang/rust/Makefile
-echo -e "$ICON_SUCCESS Rust 配置修补完成。" 
+info "替换 Rust Makefile..."
+rm -f feeds/packages/lang/rust/Makefile
+curl -sSL "https://raw.githubusercontent.com/wixxm/wikjxwrt/main/rust/Makefile" -o feeds/packages/lang/rust/Makefile || error "下载 Rust Makefile 失败！"
+echo -e "$ICON_SUCCESS Rust Makefile 替换完成。"
