@@ -56,6 +56,15 @@ jobs:
         chmod +x wikjxwrt.sh
         ./wikjxwrt.sh
 
+    - name: Unset CI environment variables for Rust host
+      run: |
+        unset CI
+        unset GITHUB_ACTIONS
+        unset GITHUB_RUN_ID
+        unset GITHUB_WORKFLOW
+        unset GITHUB_REPOSITORY
+        unset RUNNER_OS 
+
     - name: Compile the firmware
       id: compile
       run: |
