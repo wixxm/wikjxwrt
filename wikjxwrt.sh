@@ -160,6 +160,13 @@ info "克隆新的 v2ray-geodata 仓库..."
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata || error "克隆 v2ray-geodata 仓库失败！"
 echo -e "$ICON_SUCCESS v2ray-geodata 替换完成。"
 
+# 替换 Rust
+section "替换 Rust"
+info "删除默认 Rust 并替换为自定义版本..."
+rm -rf feeds/packages/lang/rust || warn "删除默认 Rust 失败，可能不存在。"
+git clone https://github.com/wixxm/Rust feeds/packages/lang/rust || error "克隆自定义 Rust 仓库失败！"
+echo -e "$ICON_SUCCESS Rust 替换完成。
+
 # 替换 golang
 section "替换 golang"
 info "删除默认 golang 并替换为自定义版本..."
