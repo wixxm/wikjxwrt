@@ -14,7 +14,10 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai
+  TZ: Asia/Shanghai  
+  LLVM_DOWNLOAD_CI: if-unchanged   
+  RUST_BACKTRACE: 1              
+  
 
 jobs:
   build:
