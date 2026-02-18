@@ -112,7 +112,7 @@ cd openwrt || error "进入 openwrt 文件夹失败！"
 # 添加自定义 feeds
 section "自定义 feeds 处理"
 info "检查和修改 $FEEDS_FILE..."
-for entry in "$WIKJXWRT_ENTRY" "$PASSWALL_PACKAGES_ENTRY" "$PASSWALL_ENTRY"; do
+for entry in "$WIKJXWRT_ENTRY" "$PASSWALL_ENTRY" "$PASSWALL_PACKAGES_ENTRY"; do
     if ! grep -q "^$entry" "$FEEDS_FILE"; then
         echo "$entry" >>"$FEEDS_FILE"
         echo -e "$ICON_SUCCESS 添加自定义 feeds: $entry"
@@ -185,7 +185,7 @@ echo -e "$ICON_SUCCESS feeds 安装完成。"
 # 注释自定义 feeds
 section "注释自定义 feeds"
 info "注释自定义 feeds..."
-for entry in "$WIKJXWRT_ENTRY" "$PASSWALL_PACKAGES_ENTRY" "$PASSWALL_ENTRY"; do
+for entry in "$WIKJXWRT_ENTRY" "$PASSWALL_ENTRY" "$PASSWALL_PACKAGES_ENTRY"; do
     sed -i "s|^$entry|#$entry|" "$FEEDS_FILE" || error "注释自定义 feeds 失败: $entry"
 done
 echo -e "$ICON_SUCCESS 注释自定义 feeds 完成。"
