@@ -40,7 +40,7 @@ WIKJXWRT_SSH_REPO="https://github.com/wixxm/WikjxWrt-ssh"
 SYSINFO_TARGET="feeds/packages/utils/bash/files/etc/profile.d/sysinfo.sh"
 TURBOACC_SCRIPT="https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh"
 WIKJXWRTR_CONFIG_REPO="https://github.com/wixxm/wikjxwrtr-config"
-OPENWRT_REPO="https://github.com/wixxm/OpenWrt-24.10"
+OPENWRT_REPO="https://github.com/wixxm/OpenWrt-25.12"
 
 # 显示帮助信息
 usage() {
@@ -48,10 +48,10 @@ usage() {
 ${BOLD}用法:${RESET} $0 [-j <线程数>] [--skip-feeds] [--skip-compile]
 
 ${BOLD}选项:${RESET}
-  -j <线程数>       指定编译时使用的并发线程数，默认 $(nproc)
-  --skip-feeds      跳过 feeds 更新步骤
-  --skip-compile    跳过编译步骤
-  -h, --help        显示帮助信息
+    -j <线程数>       指定编译时使用的并发线程数，默认 $(nproc)
+    --skip-feeds      跳过 feeds 更新步骤
+    --skip-compile    跳过编译步骤
+    -h, --help        显示帮助信息
 EOF
 }
 
@@ -160,13 +160,6 @@ info "克隆新的 v2ray-geodata 仓库..."
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata || error "克隆 v2ray-geodata 仓库失败！"
 echo -e "$ICON_SUCCESS v2ray-geodata 替换完成。"
 
-# 替换 Rust
-section "替换 Rust"
-info "删除默认 Rust 并替换为自定义版本..."
-rm -rf feeds/packages/lang/rust || warn "删除默认 Rust 失败，可能不存在。"
-git clone https://github.com/wixxm/Rust feeds/packages/lang/rust || error "克隆自定义 Rust 仓库失败！"
-echo -e "$ICON_SUCCESS Rust 替换完成。"
-
 # 替换 golang
 section "替换 golang"
 info "删除默认 golang 并替换为自定义版本..."
@@ -194,7 +187,7 @@ echo -e "$ICON_SUCCESS 注释自定义 feeds 完成。"
 section "配置 .config 文件"
 info "下载并配置 .config..."
 git clone "$WIKJXWRTR_CONFIG_REPO" temp_config_repo || error "克隆配置仓库失败！"
-mv temp_config_repo/6.6/.config ./ || error "移动 .config 文件失败！"
+mv temp_config_repo/6.12/.config ./ || error "移动 .config 文件失败！"
 rm -rf temp_config_repo
 make defconfig || error "同步配置文件失败！"
 echo -e "$ICON_SUCCESS .config 配置完成。"
