@@ -2,12 +2,12 @@
 
 固件已加入OTA在线更新（固件编译显示时间为UTC），目前只支持镜像为wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz安装的版本其他版本暂时不要尝试在线升级功能后续会继续适配。
 
-### 本固件源码基于openwrt-24.10修改，云编译项目。
+### 本固件源码基于openwrt-25.12修改，云编译项目。
    本仓库为Wikjxwrt的github云编译库，与一键编译脚本所产出固件一致。
    
-   官方源码仓库 - [OpenWrt-24.10](https://github.com/openwrt/openwrt/tree/openwrt-24.10)
+   官方源码仓库 - [OpenWrt-25.12](https://github.com/openwrt/openwrt/tree/openwrt-25.12)
    
-   本固件源码仓库 - [OpenWrt-24.10](https://github.com/wixxm/OpenWrt-24.10)
+   本固件源码仓库 - [OpenWrt-25.12](https://github.com/wixxm/OpenWrt-25.12)
 
 #### 固件下载地址
    - [Github](https://github.com/wixxm/wikjxwrt/releases)
