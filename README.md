@@ -45,14 +45,14 @@
   | passwall | netdata | iperf3 |
   |微信推送 | CPU Load | UPnP |
   | MosDNS | Argon config | Turbo ACC 网络加速设置 |
-  | openwrtclash | DiskMan | BBR |
+  | OpenClash | DiskMan | BBR |
   | lucky | statistics | nlbwmon |
-  | nikki | | MultiWAN 管理器 |
+  | nikki | 文件助手 | MultiWAN 管理器 |
   | 宽带监控 | | |
   | 网络共享 | | |
   | 终端 | | |
-  | MWAN3 分流助手 | | | 
- 
+  | DDNS-GO | | |
+  | Tailscale | | |
 
 ### 本地编译
    如需本地编译固件可直接使用本固件一键编译脚本即可编译出完全相同固件
