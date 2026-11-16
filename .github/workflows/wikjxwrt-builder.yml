@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/wixxm/OpenWrt-24.10
+  REPO_URL: https://github.com/wixxm/OpenWrt-25.12
   REPO_BRANCH: main
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
@@ -14,8 +14,8 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai        
-  
+  TZ: Asia/Shanghai
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -23,7 +23,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-      
+
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -38,8 +38,8 @@ jobs:
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
-        sudo chown $USER:$GROUPS /workdir  
-        
+        sudo chown $USER:$GROUPS /workdir
+
     - name: Check root free space
       run: |
         echo "Checking root free space..."
@@ -52,7 +52,7 @@ jobs:
         else
           echo "✅ Root free space is sufficient."
         fi
-       
+
     - name: Load custom feeds
       run: |
         curl -sSL https://raw.githubusercontent.com/wixxm/wikjxwrt/main/wikjxwrt.sh -o wikjxwrt.sh
@@ -66,10 +66,23 @@ jobs:
         unset GITHUB_RUN_ID
         unset GITHUB_WORKFLOW
         unset GITHUB_REPOSITORY
-        unset RUNNER_OS 
+        unset RUNNER_OS
+    - name: Cache build cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          openwrt/.ccache
+          openwrt/tmp/go-build
+          openwrt/dl
+        key: ccache-25.12-${{ hashFiles('openwrt/.config') }}
+        restore-keys: |
+          ccache-25.12-
 
     - name: Compile the firmware
       id: compile
+      env:
+        CCACHE_COMPILERCHECK: content
+        CCACHE_MAXSIZE: 4G
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
@@ -78,6 +91,13 @@ jobs:
         grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+    - name: Show ccache stats
+      run: |
+        if [ -x openwrt/staging_dir/host/bin/ccache ]; then
+          CCACHE_DIR="$GITHUB_WORKSPACE/openwrt/.ccache" openwrt/staging_dir/host/bin/ccache -s
+        else
+          echo "ccache binary not found"
+        fi
 
     - name: Check space usage
       if: (!cancelled())
@@ -96,7 +116,7 @@ jobs:
       run: |
         cd openwrt/bin/targets/*/*
         rm -rf packages
-        find . ! -name '*.bin' ! -name '*.img.gz' ! -name '*wikjxwrt'  -type f -delete 
+        find . ! -name '*.bin' ! -name '*.img.gz' ! -name '*wikjxwrt'  -type f -delete
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
 
@@ -115,13 +135,13 @@ jobs:
         DATE_TAG=$(date +"%Y%m%d-%H%M%S")
         PREFIXES=("🌈" "✨" "🚀" "🔥" "🌟" "⚡" "🎉" "🌻" "💡")  # 可选前缀符号
         RAND_PREFIX="${PREFIXES[$RANDOM % ${#PREFIXES[@]}]}"
-        TAG_NAME="${RAND_PREFIX}wikjxwrt-${DATE_TAG}"  
+        TAG_NAME="${RAND_PREFIX}wikjxwrt-${DATE_TAG}"
         # 输出 release_tag 变量
         echo "release_tag=${TAG_NAME}" >> $GITHUB_OUTPUT
         # 生成 Release 说明
-        echo "🚀 OpenWrt 24.10 编译完成！" > release.txt
+        echo "🚀 OpenWrt 25.12 编译完成！" > release.txt
         echo "📅 编译日期: $(date +"%Y-%m-%dT%H:%M:%S")" >> release.txt
-        echo "📦 源码版本: openwrt-24.10" >> release.txt
+        echo "📦 源码版本: openwrt-25.12" >> release.txt
         echo "🔗 固件仅包含 squashfs & ext4 格式" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
 
@@ -141,7 +161,7 @@ jobs:
         retain_days: 5
         keep_minimum_runs: 10
       env:
-       GITHUB_TOKEN: ${{ secrets.GH_PAT }}  
+       GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master
@@ -152,14 +172,14 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
-        
+
   generate-ota-json:
     name: Generate OTA JSON
     needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v4
@@ -176,7 +196,7 @@ jobs:
               repo: context.repo.repo,
             });
 
-            const asset = latest.data.assets.find(a => 
+            const asset = latest.data.assets.find(a =>
               a.name === 'wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz');
 
             if (!asset) {
